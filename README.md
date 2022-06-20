@@ -1,2 +1,2 @@
 # trips-challenge
-A simple Gatsby page with Chakra UI components.
+A simple Next.js (sorry Gatsby, not this time) site with Chakra UI components.
