@@ -4,12 +4,9 @@ import Head from 'next/head'
 type Props = {
   title: string
   description: string
-};
+}
 
-export const Metadata: FC<Props> = ({
-  title,
-  description,
-}) => {
+export const Metadata: FC<Props> = ({ title, description }) => {
   return (
     <Head>
       <title>{title}</title>

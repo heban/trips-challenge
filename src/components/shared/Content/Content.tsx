@@ -11,7 +11,7 @@ type Props = {
 
 export const Content: FC<TextProps & Props> = forwardRef(
   ({ variantColor = 'dark', variantFontSize = 16, variantFont = 'primary', children, ...props }, ref) => {
-    const { colors } = useTheme();
+    const { colors } = useTheme()
 
     return (
       <Text
@@ -25,7 +25,7 @@ export const Content: FC<TextProps & Props> = forwardRef(
       >
         {children}
       </Text>
-    );
+    )
   }
 )
 
