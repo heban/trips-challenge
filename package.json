@@ -7,7 +7,8 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "format": "prettier --write \"./**/*.{ts,tsx}\""
+    "format": "prettier --write \"./**/*.{ts,tsx}\"",
+    "test:e2e": "playwright test"
   },
   "dependencies": {
     "@chakra-ui/react": "^2.2.1",
@@ -24,6 +25,7 @@
   },
   "devDependencies": {
     "@emotion/eslint-plugin": "^11.7.0",
+    "@playwright/test": "^1.22.2",
     "@types/node": "18.0.0",
     "@types/react": "18.0.14",
     "@types/react-dom": "18.0.5",

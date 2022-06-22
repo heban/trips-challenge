@@ -9,7 +9,7 @@ function MyApp({ Component, pageProps }: AppProps) {
   return (
     <ChakraProvider theme={theme}>
       <GlobalStyles />
-      <ErrorBoundary fallback={<Alert>Something went wrong. Please try again.</Alert>}>
+      <ErrorBoundary fallback={<Alert status="error">Something went wrong. Please try again.</Alert>}>
         <Suspense fallback={<Loader />}>
           <Component {...pageProps} />
         </Suspense>
