@@ -1,10 +1,16 @@
 import { FC, useRef } from 'react'
 import { Flex, Box, useTheme } from '@chakra-ui/react'
 import Image from 'next/image'
+import dynamic from 'next/dynamic'
 import { differenceInDays } from 'date-fns'
 import { TripsData } from 'interfaces/TripsData'
+import { RatingProps } from 'interfaces/RatingProps'
 import { Content } from 'components/shared/Content'
 import { convertToPrice } from 'utils/currencyFormatter'
+
+const RatingComponent = dynamic<RatingProps>(() => import('react-simple-star-rating').then((mod) => mod.Rating), {
+  ssr: false,
+})
 
 export const Trip: FC<TripsData> = ({
   poster,
@@ -21,9 +27,17 @@ export const Trip: FC<TripsData> = ({
   const lazyRoot = useRef(null)
   const amountOfCountries = countries.length ?? 1
   const amountOfDays = differenceInDays(new Date(dateTo), new Date(dateFrom))
+  const maxAmountOfStars = 5
+  const starRatingValue = (score / maxAmountOfStars) * 100
 
   return (
-    <Flex as="li" flexBasis={{ base: '100%', md: '50%', xl: '33.333%' }} w="100%" p={{ base: '10px 0px', md: '10px' }}>
+    <Flex
+      as="li"
+      flexBasis={{ base: '100%', md: '50%', xl: '33.333%' }}
+      w="100%"
+      p={{ base: '10px 0px', md: '10px' }}
+      className="trip-card"
+    >
       <Box w="100%" borderRadius="9px" border={`1px solid ${colors.gray[100]}`}>
         {poster && (
           <Box
@@ -41,6 +55,7 @@ export const Trip: FC<TripsData> = ({
               layout="fill"
               objectFit="cover"
               lazyRoot={lazyRoot}
+              priority
             />
           </Box>
         )}
@@ -52,8 +67,11 @@ export const Trip: FC<TripsData> = ({
           <Content as="h2" variantFontSize={20} mb="20px">
             {title_en}
           </Content>
-          <Flex mb="5px">
-            <Content variantFontSize={16}>{score}</Content>
+          <Flex mb="5px" w="100%" alignItems="center">
+            <Box sx={{ svg: { display: 'inline-block' } }} mr="10px">
+              <RatingComponent readonly allowHalfIcon allowHover={false} ratingValue={starRatingValue} size={24} />
+            </Box>{' '}
+            <Content variantFontSize={14}>{score}</Content>
           </Flex>
           <Content variantFont="secondary" variantColor="light" variantFontSize={14}>
             <Box as="span" color={colors.textDark}>
