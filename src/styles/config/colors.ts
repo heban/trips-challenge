@@ -1,5 +1,5 @@
 const baseColors = {
-  textLight: '#ddd',
+  textLight: '#aaa',
   textDark: '#333',
   stars: '#f3cd4b',
 }

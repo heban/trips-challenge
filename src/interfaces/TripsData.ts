@@ -11,4 +11,5 @@ export interface TripsData {
   dateTo: string
   originalPrice: number
   price: number
+  currency: string
 }
